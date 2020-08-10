@@ -11,6 +11,7 @@ import (
 	"github.com/liserjrqlxue/goUtil/fmtUtil"
 	"github.com/liserjrqlxue/goUtil/simpleUtil"
 	"github.com/liserjrqlxue/goUtil/textUtil"
+	"github.com/liserjrqlxue/version"
 )
 
 var (
@@ -42,7 +43,7 @@ var (
 	)
 	colName = flag.String(
 		"col",
-		"Disease*",
+		"疾病中文名",
 		"column name of disease info",
 	)
 	sep = flag.String(
@@ -68,6 +69,7 @@ var (
 )
 
 func main() {
+	version.LogVersion()
 	flag.Parse()
 	if *input == "" || *hitList == "" {
 		flag.Usage()
@@ -120,28 +122,32 @@ func main() {
 		if hitMap[hit] {
 			var diseaseInfos = strings.Split(diseaseInfo, *sep)
 			var filter = true
-			//log.Printf("%s\t%s:",hit,diseaseInfo)
+			logInfo(i, hit, diseaseInfo, ":")
 			for _, disease := range diseaseInfos {
 				if includeDiseaseMap[disease] && excludeDiseaseMap[disease] {
-					log.Printf("%-12s\t%s\tconflict!", hit, disease)
+					logInfo(i, hit, disease, "conflict!")
 				} else if includeDiseaseMap[disease] {
-					//log.Printf("%s\t%s\tinclude",hit,disease)
+					logInfo(i, hit, disease, "include")
 					filter = false
 				} else if excludeDiseaseMap[disease] {
-					//log.Printf("%s\t%s\texclude",hit,disease)
+					logInfo(i, hit, disease, "exclude")
 				} else {
-					log.Printf("%-12s\t%s\tlost!", hit, disease)
+					logInfo(i, hit, disease, "lost!")
 				}
 			}
 			if filter {
-				//log.Printf("%s\t%s\t%d\t[remove]",hit,diseaseInfo,i)
+				logInfo(i, hit, diseaseInfo, "[remove]")
 				simpleUtil.CheckErr(inputExcel.RemoveRow(*sheetName, i))
 			} else {
-				//log.Printf("%s\t%s\t%d\t[include]",hit,diseaseInfo,i)
+				logInfo(i, hit, diseaseInfo, "[include]")
 			}
 		} else {
-			//log.Printf("%s\t%s\t%d\t[noHit]",hit,diseaseInfo,i)
+			logInfo(i, hit, diseaseInfo, "[noHit]")
 		}
 	}
 	simpleUtil.CheckErr(inputExcel.SaveAs(*output))
+}
+
+func logInfo(i int, sampleID, diseaseInfo, msg string) {
+	log.Printf("row:%04d\t%s\t%s\t%s", i, sampleID, diseaseInfo, msg)
 }

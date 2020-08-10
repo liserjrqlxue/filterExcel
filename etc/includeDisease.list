@@ -1,100 +1,102 @@
-Phenylketonuria
-Tetrahydrobiopterin (BH4)-deficient hyperphenylalaninemia (HPA)
-Tyrosinemia Type I
-Maple Syrup Urine Disease  Type 1A
-Maple Syrup Urine Disease  Type 1B
-Maple Syrup Urine Disease  Type 3
-MUT-Related Methylmalonic Acidemia
-MMAA-Related Methylmalonic Acidemia
-MMAB-Related Methylmalonic Acidemia
-Methylmalonic Aciduria and Homocystinuria CblC type
-Methylmalonic Aciduria and Homocystinuria CblD type
-MCEE-Related Methylmalonic Acidemia
-Glutaric Acidemia I
-Glycogen Storage Disease Type Ia
-Glycogen Storage Disease Type Ib/Ic
-Glycogen Storage Disease Type II
-Galactosemia
-Mucopolysaccharidosis Type IIIA
-MPS type IIIB
-Niemann-Pick Disease Type A/B
-Niemann-Pick Disease Type A/B
-Niemann-Pick Disease Type C1
-Niemann-Pick Disease Type C2
-Fabry Disease
-Metachromatic Leukodystrophy due to Arylsulfatase A
-Smith-Lemli-Opitz syndrome
-Acyl-CoA Dehydrogenase Deficiency,Medium-Chain
-Acyl-CoA Dehydrogenase Deficiency,Very Long-Chain
-Acyl-CoA Dehydrogenase Deficiency,Short-Chain
-Hyperornithinemia-Hyperammonemia-Homocitrullinuria Syndrome
-Alpha-Mannosidosis
-Hereditary Fructose Intolerance
-Tay-Sachs Disease
-Duchenne Muscular Dystrophy
-Spinal Muscular Atrophy
-Wilson Disease
-X-Linked Centronuclear Myopathy
-Neuronal Ceroid-Lipofuscinoses 1
-Neuronal Ceroid-Lipofuscinoses 2
-Neuronal Ceroid-Lipofuscinoses 3
-Neuronal Ceroid-Lipofuscinoses 4A
-Neuronal Ceroid-Lipofuscinoses 5
-Neuronal Ceroid-Lipofuscinoses 6
-Neuronal Ceroid-Lipofuscinoses 7
-Joubert Syndrome 2
-Joubert Syndrome 3
-Joubert Syndrome 5
-Joubert Syndrome 6
-Joubert Syndrome 9
-Oculocutaneous Albinism Type 1
-Oculocutaneous Albinism Type 2
-Oculocutaneous Albinism Type 3
-Oculocutaneous Albinism Type 4
-Oculocutaneous Albinism Type 6
-Oculocutaneous Albinism Type 7
-X-Linked Ocular Albinism
-Hermansky-Pudlak Syndrome 1
-Hermansky-Pudlak Syndrome 3
-Alpha-thalassemia
-Beta-thalassemia
-Hemophilia B
-Fanconi anemia, complementation group A
-Fanconi anemia, complementation group C
-Sickle Cell Anemia
-Autosomal Recessive Deafness 1A
-Autosomal Recessive Deafness 4, with Enlarged Vestibular Aqueduct
-Hemophagocytic lymphohistiocytosis, familial, 2
-Hemophagocytic lymphohistiocytosis, familial, 3
-Hemophagocytic lymphohistiocytosis, familial, 4
-Hemophagocytic lymphohistiocytosis, familial, 5
-X-Linked Severe Combined Immunodeficiency
-X-Linked Adrenal Hypoplasia Congenita
-Nephrotic syndrome, type 1
-Nephronophthisis 11
-Nephropathic Cystinosis
-Progressive Familial Intrahepatic Cholestasis: Type 2
-Cystic Fibrosis
-Meckel Syndrome 2
-Meckel Syndrome 3
-Meckel Syndrome 4
-CC2D2A-Related COACH Syndrome
-TMEM67-Related COACH Syndrome
-Sjogren-Larsson syndrome
-X-Linked Hypohidrotic Ectodermal Dysplasia
-Canavan Disease
-Ellis-van Creveld Syndrome
-Maple Syrup Urine Disease, type 2
-Joubert Syndrome 17
-Glycogen Storage Disease type IV
-Fanconi anemia, complementation group G
-Mucopolysaccharidosis II
-Mucopolysaccharidosis type IVA
-Primary Carnitine Deficiency
-Glutaric acidemia IIC
-Glutaric acidemia IIB
-Glutaric acidemia IIA
-Sitosterolemia
-Glycine encephalopathy
-Alport syndrome 2, autosomal recessive
-Propionicacidemia
+疾病名称（中文）-生信流程
+苯丙酮尿症
+四氢生物蝶呤缺乏症A型
+酪氨酸血症1型
+枫糖尿病1A型
+枫糖尿病1B型
+枫糖尿病3型
+甲基丙二酸血症Mut型
+甲基丙二酸血症cblA型
+甲基丙二酸血症cblB型
+甲基丙二酸血症伴同型半胱氨酸血症cblC型
+甲基丙二酸血症伴同型半胱氨酸血症cblD型
+甲基丙二酸单酰辅酶A差向异构酶缺乏症
+戊二酸血症I型
+糖原累积病Ia型
+糖原累积病Ib型
+糖原累积病Ic型
+糖原累积病Ib(Ic)型
+糖原累积病II型
+半乳糖血症
+黏多糖贮积症IIIA型
+黏多糖贮积症IIIB型
+Niemann-Pick病A型
+Niemann-Pick病B型
+Niemann-Pick病C1型
+Niemann-Pick病C2型
+Fabry病
+异染性脑白质营养不良
+Smith-Lemli-Opitz综合征
+中链酰基辅酶A脱氢酶缺乏症
+极长链酰基辅酶A脱氢酶缺乏症
+短链酰基辅酶A脱氢酶缺乏症
+高鸟氨酸血症-高氨血症-同型瓜氨酸尿症
+α-甘露糖苷贮积症
+遗传性果糖不耐受症
+Tay-Sachs病
+进行性假肥大性肌营养不良
+脊髓性肌萎缩症
+肝豆状核变性
+X连锁中央核肌病
+神经元蜡样脂褐质沉积症1型
+神经元蜡样脂褐质沉积症2型
+神经元蜡样脂褐质沉积症3型
+神经元蜡样脂褐质沉积症4A型
+神经元蜡样脂褐质沉积症5型
+神经元蜡样脂褐质沉积症6型
+神经元蜡样脂褐质沉积症7型
+Joubert综合征2型
+Joubert综合征3型
+Joubert综合征5型
+Joubert综合征6型
+Joubert综合征9型
+眼皮肤白化病1型
+眼皮肤白化病2型
+眼皮肤白化病3型
+眼皮肤白化病4型
+眼皮肤白化病6型
+眼皮肤白化病7型
+X连锁遗传眼白化病
+Hermansky-Pudlak综合征1型
+Hermansky-Pudlak综合征3型
+α-地中海贫血
+β-地中海贫血
+乙型血友病
+范可尼贫血互补群A
+范可尼贫血互补群C
+镰状细胞性贫血症
+常染色体隐性耳聋1A型
+常染色体隐性耳聋4型
+家族性噬血细胞性淋巴组织细胞增多症2型
+家族性噬血细胞性淋巴组织细胞增多症3型
+家族性噬血细胞性淋巴组织细胞增多症4型
+家族性噬血细胞性淋巴组织细胞增多症5型
+X连锁重症联合免疫缺陷
+X连锁先天性肾上腺发育不全
+肾病综合征1型
+肾单位肾痨11型
+肾病型胱氨酸症
+进行性家族性肝内胆汁淤积症2型
+囊性纤维化
+Meckel综合征2型
+Meckel综合征3型
+Meckel综合征4型
+COACH综合征
+Sjögren-Larsson综合征
+X连锁少汗性外胚层发育不良
+Canavan病
+Ellis-van Creveld综合征
+枫糖尿病2型
+Joubert综合征17型
+糖原累积病IV型
+范可尼贫血互补群G
+黏多糖贮积症II型
+黏多糖贮积症IVA型
+原发性肉碱缺乏症
+戊二酸血症IIC型
+戊二酸血症IIB型
+戊二酸血症IIA型
+谷固醇血症
+甘氨酸脑病
+常染色体隐性Alport综合征2型
+丙酸血症
