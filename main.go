@@ -113,10 +113,8 @@ func main() {
 			diseaseIndex = i
 		}
 	}
-	for i, row := range rows {
-		if i == 0 {
-			continue
-		}
+	for i := len(rows) - 1; i > 0; i-- {
+		var row = rows[i]
 		var hit = row[hitIndex]
 		var diseaseInfo = row[diseaseIndex]
 		if hitMap[hit] {
@@ -137,7 +135,7 @@ func main() {
 			}
 			if filter {
 				logInfo(i, hit, diseaseInfo, "[remove]")
-				simpleUtil.CheckErr(inputExcel.RemoveRow(*sheetName, i))
+				simpleUtil.CheckErr(inputExcel.RemoveRow(*sheetName, i+1))
 			} else {
 				logInfo(i, hit, diseaseInfo, "[include]")
 			}
@@ -145,7 +143,8 @@ func main() {
 			logInfo(i, hit, diseaseInfo, "[noHit]")
 		}
 	}
-	simpleUtil.CheckErr(inputExcel.SaveAs(*output))
+	log.Printf("save as %s:%v", *output, inputExcel.SaveAs(*output))
+	//simpleUtil.CheckErr(inputExcel.SaveAs(*output))
 }
 
 func logInfo(i int, sampleID, diseaseInfo, msg string) {
