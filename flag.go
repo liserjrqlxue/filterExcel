@@ -26,7 +26,7 @@ var (
 		"All variants data",
 		"sheet name to be filter",
 	)
-	checkCol = flag.String(
+	diseaseCol = flag.String(
 		"col",
 		"疾病中文名",
 		"column name to disease to check filter",

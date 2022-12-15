@@ -4,7 +4,6 @@ import (
 	"flag"
 	"github.com/liserjrqlxue/goUtil/fmtUtil"
 	"github.com/liserjrqlxue/goUtil/simpleUtil"
-	"github.com/liserjrqlxue/goUtil/textUtil"
 	"github.com/liserjrqlxue/version"
 	"github.com/xuri/excelize/v2"
 	"log"
@@ -30,28 +29,10 @@ func main() {
 		*output = *input + ".filter.xlsx"
 	}
 
-	// load disease list
-	var includeDiseases = textUtil.File2Array(*includeDisease)
-	var includeDiseaseMap = make(map[string]bool)
-	for _, d := range includeDiseases {
-		includeDiseaseMap[d] = true
-	}
-	var excludeDiseases = textUtil.File2Array(*excludeDisease)
-	var excludeDiseaseMap = make(map[string]bool)
-	for _, d := range excludeDiseases {
-		excludeDiseaseMap[d] = true
-	}
+	var inputExcel, err = excelize.OpenFile(*input)
+	simpleUtil.CheckErr(err)
 
-	// load hit
-	var hits = textUtil.File2Array(*hitList)
-	var hitMap = make(map[string]bool)
-	for _, h := range hits {
-		hitMap[h] = true
-	}
-
-	var inputExcel, err1 = excelize.OpenFile(*input)
-	simpleUtil.CheckErr(err1)
-	RemoveHitRow(inputExcel, hitMap, includeDiseaseMap, excludeDiseaseMap, *sheetName, *hitCol, *checkCol)
+	RemoveHitRows(inputExcel, *sheetName, *hitCol, *diseaseCol, *hitList, *includeDisease, *excludeDisease)
 
 	log.Printf("save as %s:%v", *output, inputExcel.SaveAs(*output))
 }
