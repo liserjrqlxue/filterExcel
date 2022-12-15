@@ -104,6 +104,9 @@ func MaskNotPackagedCNV(excel *excelize.File, sheetName string, packages map[str
 		}
 	}
 	for i, row := range rows {
+		if i == 0 {
+			continue
+		}
 		var hit = strings.Split(row[hitIndex], "_")[0]
 		var info = packages[hit]
 		if info["地贫"] != "是" {
