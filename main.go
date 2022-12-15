@@ -4,6 +4,7 @@ import (
 	"flag"
 	"github.com/liserjrqlxue/goUtil/fmtUtil"
 	"github.com/liserjrqlxue/goUtil/simpleUtil"
+	"github.com/liserjrqlxue/goUtil/textUtil"
 	"github.com/liserjrqlxue/version"
 	"github.com/xuri/excelize/v2"
 	"log"
@@ -29,10 +30,14 @@ func main() {
 		*output = *input + ".filter.xlsx"
 	}
 
+	var cnvPackage, _ = textUtil.File2MapMap(filepath.Join(etcPath, "CNV包装.txt"), "产品编号", "\t", nil)
+
 	var inputExcel, err = excelize.OpenFile(*input)
 	simpleUtil.CheckErr(err)
 
 	RemoveHitRows(inputExcel, *sheetName, *hitCol, *diseaseCol, *hitList, *includeDisease, *excludeDisease)
+	// 补充实验
+	MaskNotPackagedCNV(inputExcel, "补充实验", cnvPackage)
 
 	log.Printf("save as %s:%v", *output, inputExcel.SaveAs(*output))
 }

@@ -4,6 +4,7 @@ import (
 	"github.com/liserjrqlxue/goUtil/simpleUtil"
 	"github.com/liserjrqlxue/goUtil/textUtil"
 	"github.com/xuri/excelize/v2"
+	"regexp"
 	"strings"
 )
 
@@ -68,4 +69,69 @@ func List2BoolMap(path string) map[string]bool {
 		boolMap[s] = true
 	}
 	return boolMap
+}
+
+var (
+	isThal = regexp.MustCompile(`地贫`)
+	isSMA  = regexp.MustCompile(`SMN1`)
+	isF8   = regexp.MustCompile(`F8`)
+)
+
+func MaskNotPackagedCNV(excel *excelize.File, sheetName string, packages map[string]map[string]string) {
+	var (
+		hitIndex   int
+		thalIndexs []int
+		smaIndexs  []int
+		f8Indexs   []int
+		maskValue  = "检测范围外"
+	)
+
+	var rows, err = excel.GetRows(sheetName)
+	simpleUtil.CheckErr(err)
+
+	for i, cell := range rows[0] {
+		if cell == "SampleID" {
+			hitIndex = i
+		}
+		if isThal.MatchString(cell) {
+			thalIndexs = append(thalIndexs, i)
+		}
+		if isSMA.MatchString(cell) {
+			smaIndexs = append(smaIndexs, i)
+		}
+		if isF8.MatchString(cell) {
+			f8Indexs = append(f8Indexs, i)
+		}
+	}
+	for i, row := range rows {
+		var hit = row[hitIndex]
+		var info = packages[hit]
+		if info["地贫"] != "是" {
+			for _, col := range thalIndexs {
+				simpleUtil.CheckErr(
+					excel.SetCellStr(sheetName, GetAxis(col+1, i+1), maskValue),
+				)
+			}
+		}
+		if info["SMA"] != "是" {
+			for _, col := range smaIndexs {
+				simpleUtil.CheckErr(
+					excel.SetCellStr(sheetName, GetAxis(col+1, i+1), maskValue),
+				)
+			}
+		}
+		if info["F8"] != "是" {
+			for _, col := range f8Indexs {
+				simpleUtil.CheckErr(
+					excel.SetCellStr(sheetName, GetAxis(col+1, i+1), maskValue),
+				)
+			}
+		}
+	}
+}
+
+func GetAxis(col, row int) string {
+	var axis, err = excelize.CoordinatesToCellName(col, row)
+	simpleUtil.CheckErr(err)
+	return axis
 }
