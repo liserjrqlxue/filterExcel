@@ -90,7 +90,7 @@ func MaskNotPackagedCNV(excel *excelize.File, sheetName string, packages map[str
 	simpleUtil.CheckErr(err)
 
 	for i, cell := range rows[0] {
-		if cell == "SampleID" {
+		if cell == "产品编码_产品名称" {
 			hitIndex = i
 		}
 		if isThal.MatchString(cell) {
@@ -104,7 +104,7 @@ func MaskNotPackagedCNV(excel *excelize.File, sheetName string, packages map[str
 		}
 	}
 	for i, row := range rows {
-		var hit = row[hitIndex]
+		var hit = strings.Split(row[hitIndex], "_")[0]
 		var info = packages[hit]
 		if info["地贫"] != "是" {
 			for _, col := range thalIndexs {
