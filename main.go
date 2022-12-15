@@ -21,9 +21,9 @@ var (
 func main() {
 	version.LogVersion()
 	flag.Parse()
-	if *input == "" || *hitList == "" {
+	if *input == "" {
 		flag.Usage()
-		fmtUtil.Fprintln(os.Stderr, "-input and -list is required")
+		fmtUtil.Fprintln(os.Stderr, "-input is required")
 		os.Exit(1)
 	}
 	if *output == "" {
@@ -35,7 +35,9 @@ func main() {
 	var inputExcel, err = excelize.OpenFile(*input)
 	simpleUtil.CheckErr(err)
 
-	RemoveHitRows(inputExcel, *sheetName, *hitCol, *diseaseCol, *hitList, *includeDisease, *excludeDisease)
+	if *hitList != "" {
+		RemoveHitRows(inputExcel, *sheetName, *hitCol, *diseaseCol, *hitList, *includeDisease, *excludeDisease)
+	}
 	// 补充实验
 	MaskNotPackagedCNV(inputExcel, "补充实验", cnvPackage)
 
