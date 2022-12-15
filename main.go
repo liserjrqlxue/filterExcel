@@ -2,16 +2,14 @@ package main
 
 import (
 	"flag"
-	"log"
-	"os"
-	"path/filepath"
-	"strings"
-
-	"github.com/360EntSecGroup-Skylar/excelize/v2"
 	"github.com/liserjrqlxue/goUtil/fmtUtil"
 	"github.com/liserjrqlxue/goUtil/simpleUtil"
 	"github.com/liserjrqlxue/goUtil/textUtil"
 	"github.com/liserjrqlxue/version"
+	"github.com/xuri/excelize/v2"
+	"log"
+	"os"
+	"path/filepath"
 )
 
 var (
@@ -41,10 +39,10 @@ var (
 		"All variants data",
 		"sheet name to be filter",
 	)
-	colName = flag.String(
+	checkCol = flag.String(
 		"col",
 		"疾病中文名",
-		"column name of disease info",
+		"column name to disease to check filter",
 	)
 	sep = flag.String(
 		"sep",
@@ -101,50 +99,9 @@ func main() {
 
 	var inputExcel, err1 = excelize.OpenFile(*input)
 	simpleUtil.CheckErr(err1)
+	RemoveHitRow(inputExcel, hitMap, includeDiseaseMap, excludeDiseaseMap, *sheetName, *hitCol, *checkCol)
 
-	var hitIndex, diseaseIndex int
-	var rows, err2 = inputExcel.GetRows(*sheetName)
-	simpleUtil.CheckErr(err2)
-	for i, cell := range rows[0] {
-		switch cell {
-		case *hitCol:
-			hitIndex = i
-		case *colName:
-			diseaseIndex = i
-		}
-	}
-	for i := len(rows) - 1; i > 0; i-- {
-		var row = rows[i]
-		var hit = row[hitIndex]
-		var diseaseInfo = row[diseaseIndex]
-		if hitMap[hit] {
-			var diseaseInfos = strings.Split(diseaseInfo, *sep)
-			var filter = true
-			logInfo(i, hit, diseaseInfo, ":")
-			for _, disease := range diseaseInfos {
-				if includeDiseaseMap[disease] && excludeDiseaseMap[disease] {
-					logInfo(i, hit, disease, "conflict!")
-				} else if includeDiseaseMap[disease] {
-					logInfo(i, hit, disease, "include")
-					filter = false
-				} else if excludeDiseaseMap[disease] {
-					logInfo(i, hit, disease, "exclude")
-				} else {
-					logInfo(i, hit, disease, "lost!")
-				}
-			}
-			if filter {
-				logInfo(i, hit, diseaseInfo, "[remove]")
-				simpleUtil.CheckErr(inputExcel.RemoveRow(*sheetName, i+1))
-			} else {
-				logInfo(i, hit, diseaseInfo, "[include]")
-			}
-		} else {
-			logInfo(i, hit, diseaseInfo, "[noHit]")
-		}
-	}
 	log.Printf("save as %s:%v", *output, inputExcel.SaveAs(*output))
-	//simpleUtil.CheckErr(inputExcel.SaveAs(*output))
 }
 
 func logInfo(i int, sampleID, diseaseInfo, msg string) {
