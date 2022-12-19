@@ -19,3 +19,7 @@ DX2154	单基因遗传病携带者筛查1200+种	是	是	是	否
 DX2155	单基因遗传病携带者筛查1200+种&甲型血友病	是	是	是	否
 DX2156	单基因遗传病携带者筛查1200+种&脆性X综合征	是	是	是	否
 DX2157	单基因遗传病携带者筛查1200+种&甲型血友病&脆性X综合征	是	是	是	否
+HW3105	甲型血友病基因检测（港澳台）	否	否	是	否
+HW3106	VISTA Hemophilia A	否	否	是	否
+HW3107	VISTA Carrier screening targeted panel 2.0 PLUS	是	是	是	否
+HW3108	VISTA Carrier screening targeted panel 2.0（港澳台）出中文报告用	是	是	是	否
