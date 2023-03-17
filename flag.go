@@ -59,6 +59,6 @@ var (
 	addition = flag.String(
 		"add",
 		"",
-		"lims_info for 医院名称（第15列）",
+		"lims_info for 样品编号（第1列）产品编号（第12列）医院名称（第15列）",
 	)
 )
