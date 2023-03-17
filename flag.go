@@ -51,4 +51,9 @@ var (
 		"SampleID",
 		"column name of hit to be filter",
 	)
+	lsms = flag.String(
+		"lsms",
+		"",
+		"sample list for 青岛崂山区9种单基因病携带者筛查项目",
+	)
 )

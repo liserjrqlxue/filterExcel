@@ -77,18 +77,22 @@ var (
 	isF8   = regexp.MustCompile(`F8`)
 )
 
-func MaskNotPackagedCNV(excel *excelize.File, sheetName string, packages map[string]map[string]string) {
+func MaskNotPackagedCNV(excel *excelize.File, sheetName string, packages map[string]map[string]string, smaList map[string]bool) {
 	var (
-		hitIndex   int
-		thalIndexs []int
-		smaIndexs  []int
-		f8Indexs   []int
-		maskValue  = "检测范围外"
-		rows, err  = excel.GetRows(sheetName)
+		sampleIndex int
+		hitIndex    int
+		thalIndexs  []int
+		smaIndexs   []int
+		f8Indexs    []int
+		maskValue   = "检测范围外"
+		rows, err   = excel.GetRows(sheetName)
 	)
 	simpleUtil.CheckErr(err)
 
 	for i, cell := range rows[0] {
+		if cell == "SampleID" {
+			sampleIndex = i
+		}
 		if cell == "产品编码_产品名称" {
 			hitIndex = i
 		}
@@ -108,10 +112,11 @@ func MaskNotPackagedCNV(excel *excelize.File, sheetName string, packages map[str
 		}
 		var hit = strings.Split(row[hitIndex], "_")[0]
 		var info = packages[hit]
+		var sampleID = row[sampleIndex]
 		if info["地贫"] != "是" {
 			maskCells(excel, sheetName, maskValue, i, thalIndexs)
 		}
-		if info["SMA"] != "是" {
+		if info["SMA"] != "是" || smaList[sampleID] {
 			maskCells(excel, sheetName, maskValue, i, smaIndexs)
 		}
 		if info["F8"] != "是" {

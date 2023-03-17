@@ -30,6 +30,11 @@ func main() {
 		*output = *input + ".filter.xlsx"
 	}
 
+	var lsmsList = make(map[string]bool)
+	for _, s := range textUtil.File2Array(*lsms) {
+		lsmsList[s] = true
+	}
+
 	var cnvPackage, _ = textUtil.File2MapMap(filepath.Join(etcPath, "CNV包装.txt"), "产品编号", "\t", nil)
 
 	var inputExcel, err = excelize.OpenFile(*input)
@@ -39,7 +44,7 @@ func main() {
 		RemoveHitRows(inputExcel, *sheetName, *hitCol, *diseaseCol, *hitList, *includeDisease, *excludeDisease)
 	}
 	// 补充实验
-	MaskNotPackagedCNV(inputExcel, "补充实验", cnvPackage)
+	MaskNotPackagedCNV(inputExcel, "补充实验", cnvPackage, lsmsList)
 
 	log.Printf("save as %s:%v", *output, inputExcel.SaveAs(*output))
 }
