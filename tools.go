@@ -113,13 +113,13 @@ func MaskNotPackagedCNV(excel *excelize.File, sheetName string, packages map[str
 		var hit = strings.Split(row[hitIndex], "_")[0]
 		var info = packages[hit]
 		var sampleID = row[sampleIndex]
-		if info["地贫"] != "是" {
+		if info["地贫"] == "否" {
 			maskCells(excel, sheetName, maskValue, i, thalIndexs)
 		}
-		if info["SMA"] != "是" || smaList[sampleID] {
+		if info["SMA"] == "否" || smaList[sampleID] {
 			maskCells(excel, sheetName, maskValue, i, smaIndexs)
 		}
-		if info["F8"] != "是" {
+		if info["F8"] == "否" {
 			maskCells(excel, sheetName, maskValue, i, f8Indexs)
 		}
 	}
