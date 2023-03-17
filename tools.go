@@ -84,9 +84,8 @@ func MaskNotPackagedCNV(excel *excelize.File, sheetName string, packages map[str
 		smaIndexs  []int
 		f8Indexs   []int
 		maskValue  = "检测范围外"
+		rows, err  = excel.GetRows(sheetName)
 	)
-
-	var rows, err = excel.GetRows(sheetName)
 	simpleUtil.CheckErr(err)
 
 	for i, cell := range rows[0] {
@@ -110,26 +109,22 @@ func MaskNotPackagedCNV(excel *excelize.File, sheetName string, packages map[str
 		var hit = strings.Split(row[hitIndex], "_")[0]
 		var info = packages[hit]
 		if info["地贫"] != "是" {
-			for _, col := range thalIndexs {
-				simpleUtil.CheckErr(
-					excel.SetCellStr(sheetName, GetAxis(col+1, i+1), maskValue),
-				)
-			}
+			maskCells(excel, sheetName, maskValue, i, thalIndexs)
 		}
 		if info["SMA"] != "是" {
-			for _, col := range smaIndexs {
-				simpleUtil.CheckErr(
-					excel.SetCellStr(sheetName, GetAxis(col+1, i+1), maskValue),
-				)
-			}
+			maskCells(excel, sheetName, maskValue, i, smaIndexs)
 		}
 		if info["F8"] != "是" {
-			for _, col := range f8Indexs {
-				simpleUtil.CheckErr(
-					excel.SetCellStr(sheetName, GetAxis(col+1, i+1), maskValue),
-				)
-			}
+			maskCells(excel, sheetName, maskValue, i, f8Indexs)
 		}
+	}
+}
+
+func maskCells(excel *excelize.File, sheetName, maskValue string, rIdx int, cols []int) {
+	for _, col := range cols {
+		simpleUtil.CheckErr(
+			excel.SetCellStr(sheetName, GetAxis(col+1, rIdx+1), maskValue),
+		)
 	}
 }
 
