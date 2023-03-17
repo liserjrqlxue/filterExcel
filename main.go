@@ -41,7 +41,7 @@ func main() {
 		*output = *input + ".filter.xlsx"
 	}
 
-	for _, s := range textUtil.File2Array(filepath.Join(etcPath, "")) {
+	for _, s := range textUtil.File2Array(filepath.Join(etcPath, "青岛崂山区9种单基因病携带者筛查项目.txt")) {
 		lsmsHopitalList[s] = true
 	}
 	if *addition != "" {
