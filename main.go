@@ -51,12 +51,13 @@ func main() {
 		var scanner = bufio.NewScanner(r)
 		for _, strings := range scannerUtil.Scanner2Slice(scanner, "\t") {
 			var sampleID = strings[0]
+			var productID = strings[11]
 			var hospital = strings[14]
-			if lsmsHopitalList[hospital] {
+			if productID == "DX2063" && lsmsHopitalList[hospital] {
 				lsmsList[sampleID] = true
-				log.Printf("%s\t%s\t崂山民生\n", sampleID, hospital)
+				log.Printf("%s\t%s\t%s\t崂山民生\n", sampleID, productID, hospital)
 			} else {
-				log.Printf("%s\t%s\n", sampleID, hospital)
+				log.Printf("%s\t%s\t%s\n", sampleID, productID, hospital)
 			}
 		}
 		simpleUtil.CheckErr(file.Close())
