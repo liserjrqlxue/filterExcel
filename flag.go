@@ -56,4 +56,9 @@ var (
 		"",
 		"sample list for 青岛崂山区9种单基因病携带者筛查项目",
 	)
+	addition = flag.String(
+		"add",
+		"",
+		"lims_info for 医院名称（第15列）",
+	)
 )
