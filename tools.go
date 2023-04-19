@@ -138,3 +138,9 @@ func GetAxis(col, row int) string {
 	simpleUtil.CheckErr(err)
 	return axis
 }
+
+func writeRow(excel *excelize.File, sheetName string, values []string, rIdx int) {
+	for i, value := range values {
+		simpleUtil.CheckErr(excel.SetCellValue(sheetName, GetAxis(i+1, rIdx), value))
+	}
+}
